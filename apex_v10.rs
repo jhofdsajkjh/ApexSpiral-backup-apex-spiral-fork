@@ -2525,6 +2525,92 @@ pub fn calculate_delta_g_total(params: &DeltaGParamsV10) -> f64 {
     numerator / (params.h_info * params.t)
 }
 
+// ═════════════════════════════════════════════════════════════════════════════
+// 薛定谔基因量子进化模块 — Quantum Gene Evolution (Schrödinger's Gene)
+// F_quantum = F_classical × e^(λ × entanglement)
+// ═════════════════════════════════════════════════════════════════════════════
+
+/// 量子基因对参数
+#[derive(Debug, Clone)]
+pub struct QuantumGenePair {
+    pub gene_a: String,
+    pub gene_b: String,
+    pub f_classical: f64,
+    pub lambda: f64,           // λ: 量子效应强度 (0.1~10.0)
+    pub entanglement: f64,     // 纠缠度: 0.0~1.0
+}
+
+/// 计算量子纠缠因子
+pub fn quantum_entanglement_factor(lambda: f64, entanglement: f64) -> f64 {
+    // F_quantum = F_classical × e^(λ × entanglement)
+    (lambda * entanglement).exp()
+}
+
+/// 量子增强后的基因对适应度
+pub fn calculate_quantum_fitness(pair: &QuantumGenePair) -> f64 {
+    let enhancement = quantum_entanglement_factor(pair.lambda, pair.entanglement);
+    pair.f_classical * enhancement
+}
+
+/// 量子态叠加因子 (每对基因有8个叠加态)
+pub const SUPERPOSITION_STATES_PER_PAIR: f64 = 8.0;
+
+/// 计算量子探索路径总数
+/// 经典: n × (n-1) / 2 对
+/// 量子: 经典对数 × 叠加态数
+pub fn quantum_exploration_paths(gene_count: usize) -> f64 {
+    let classical_pairs = (gene_count * (gene_count - 1)) as f64 / 2.0;
+    classical_pairs * SUPERPOSITION_STATES_PER_PAIR
+}
+
+/// 时间向量加速因子
+/// 从秒压缩到Planck时间: 1.85×10^43倍
+pub const TIME_ACCELERATION_FACTOR: f64 = 1.85e43;
+
+/// 判断量子增强态: entanglement > 0.6
+pub fn is_quantum_enhanced(entanglement: f64) -> bool {
+    entanglement > 0.6
+}
+
+/// 判断完美纠缠: entanglement > 0.9
+pub fn is_perfect_entanglement(entanglement: f64) -> bool {
+    entanglement > 0.9
+}
+
+/// 量子基因融合引擎
+pub struct QuantumGeneFusionEngine {
+    pub gene_count: usize,
+    pub classical_pairs: f64,
+    pub quantum_paths: f64,
+    pub time_acceleration: f64,
+}
+
+impl QuantumGeneFusionEngine {
+    pub fn new(gene_count: usize) -> Self {
+        let classical_pairs = (gene_count * (gene_count - 1)) as f64 / 2.0;
+        let quantum_paths = quantum_exploration_paths(gene_count);
+        Self {
+            gene_count,
+            classical_pairs,
+            quantum_paths,
+            time_acceleration: TIME_ACCELERATION_FACTOR,
+        }
+    }
+
+    /// 计算两个基因的量子融合适应度
+    pub fn fuse(&self, f_a: f64, f_b: f64, lambda: f64, entanglement: f64) -> f64 {
+        let f_classical = f_a * f_b;
+        let pair = QuantumGenePair {
+            gene_a: String::new(),
+            gene_b: String::new(),
+            f_classical,
+            lambda,
+            entanglement,
+        };
+        calculate_quantum_fitness(&pair)
+    }
+}
+
 #[cfg(test)]
 mod tests_v10_gamma {
     use super::*;
