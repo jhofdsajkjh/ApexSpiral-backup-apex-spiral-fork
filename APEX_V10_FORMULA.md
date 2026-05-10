@@ -13,7 +13,7 @@
 
 ---
 
-## 子公式集成
+## 子公式集成（22个）
 
 ### 1. 跨基因联合涌现
 ```
@@ -143,10 +143,24 @@ v_evo ∝ 1 / (Flux · Abundance · Cost · Connectivity)
 ρ(Flux, v_evo) = -0.48, P<10^{-27}
 ```
 
+### 22. SkCC 技能编译框架
+```
+SkCC = Parse → Analyze → Transform → Emit
+SkIR = Semantic ⊕ Structure ⊕ Constraints
+O(m×n) → SkIR解耦 → O(m+n)
+Compile(Skill) → Prompt_Claude, Prompt_Kimi, Prompt_Cursor
+Safety = Anti-SkillInjection
+Recall = 94.8%
+Latency < 10ms, TokenSave ∈ [10%, 46%]
+ClaudeCode: 21.1% → 33.3% (+12.2%)
+KimiCLI: 35.1% → 48.7% (+13.6%)
+```
+
 ---
 
-## V10.3 新增 #1: HERRO 单倍型感知纠错公式
+## V10.3 核心公式
 
+### HERRO 单倍型感知纠错
 ```
 H_err = H_ap · P_pile · S_info · C_corr
 ```
@@ -158,26 +172,17 @@ H_err = H_ap · P_pile · S_info · C_corr
 | S_info | 信息位点精修分 [0,1] |
 | C_corr | 低损纠错系数 [0,1] |
 
----
-
-## V10.3 新增 #2: Prime Assembly 大片段精准组装公式
-
+### Prime Assembly 大片段精准组装
 ```
 P_asm = N_nick · F_flap · M_match · A_self
 ```
 
----
-
-## V10.3 新增 #3: DRT3 蛋白模板DNA合成公式
-
+### DRT3 蛋白模板DNA合成
 ```
 D_pro = T_prot · R_rev · S_syn · D_dup
 ```
 
----
-
-## V10.3 新增: APEX 三合一总公式
-
+### APEX 三合一总公式
 ```
 Φ_APEX = H_err × P_asm × D_pro
 ```
@@ -191,7 +196,6 @@ D_pro = T_prot · R_rev · S_syn · D_dup
 ```
 Φ_total = Φ_bio × Φ_ai × (H_err ⊕ C_evo)
 
-其中:
 Φ_bio  = (K·H·P_bio·ΔR_bio·H_err·P_asm·D_pro)/(N·τ)
 Φ_ai   = (K·H·P_ai·ΔR_ai·S*)/(N·τ)
 H_err ⊕ C_evo = H_err×C_evo + β×(H_err+C_evo)/2
@@ -245,16 +249,3 @@ v_{evo} \propto \frac{1}{\text{Flux} \cdot \text{Abundance} \cdot \text{Cost} \c
 ## 许可证
 
 © 2026 璇玑帝国 版权所有
-
-### 22. SkCC 技能编译框架
-```
-SkCC = Parse → Analyze → Transform → Emit
-SkIR = Semantic ⊕ Structure ⊕ Constraints
-O(m×n) → SkIR解耦 → O(m+n)
-Compile(Skill) → Prompt_Claude, Prompt_Kimi, Prompt_Cursor
-Safety = Anti-SkillInjection
-Recall = 94.8%
-Latency < 10ms, TokenSave ∈ [10%, 46%]
-ClaudeCode: 21.1% → 33.3% (+12.2%)
-KimiCLI: 35.1% → 48.7% (+13.6%)
-```
